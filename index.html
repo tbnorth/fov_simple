@@ -1,24 +1,24 @@
 <html>
 <head>
 <title>Simple FOV calculator</title>
-<style>
-  * { font-family: sans-serif; }
-  input { font-size: 120%; }
-  a { text-decoration: none; }
-  a:hover { border-bottom: dotted blue 1px; }
-</style>
 <link rel="stylesheet"
  href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<style>
+  body { font-size: 150%; }
+  * { font-family: sans-serif; }
+  a { text-decoration: none; }
+  a:hover { border-bottom: dotted blue 1px; }
+</style>
 </head>
 <body>
 
-<h2>Angle (degrees)</h2>
+<h2>Angle (degrees) <span id='i_a'></span></h2>
 <div><input type="range" id="a" value="75" min="5" max="175" data-highlight="true" step=5></div>
-<h2>Height (cm)</h2>
+<h2>Height (cm) <span id='i_h'></span></h2>
 <div><input type="range" id="h" value="500" min="5" max="1750" data-highlight="true" step=5></div>
-<h2>Width (cm)</h2>
+<h2>Width (cm) <span id='i_w'></span></h2>
 <div><input type="range" id="w" value="500" min="5" max="1750" data-highlight="true" step=5></div>
 
 <p>
@@ -52,6 +52,10 @@ function slider_to_input(which) {
     jQ('#a').val(a); jQ('#a').slider('refresh');
     jQ('#h').val(h); jQ('#h').slider('refresh');
     jQ('#w').val(w); jQ('#w').slider('refresh');
+
+    jQ('#i_a').text(a);
+    jQ('#i_h').text(h);
+    jQ('#i_w').text(w);
 
 }
 
