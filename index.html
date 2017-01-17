@@ -29,8 +29,6 @@ for offline use.</a></p>
 <script>
 jQ = jQuery;
 
-// Hmm, using h = w / ( 2 * tan(a / 2) ) with a=75 and w=0.5 I get h=0.3258, and that seemed to be supported by drawing it.
-
 function slider_to_input(which) {
     var a = parseFloat(jQ('#a').slider('value'));
     var h = parseFloat(jQ('#h').slider('value'));
