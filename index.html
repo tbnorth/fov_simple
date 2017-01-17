@@ -32,6 +32,11 @@ for offline use.</a></p>
 jQ = jQuery;
 
 function slider_to_input(which) {
+
+    jQ("#a").off("change");
+    jQ("#h").off("change");
+    jQ("#w").off("change");
+
     var a = parseFloat(jQ('#a').val());
     var h = parseFloat(jQ('#h').val());
     var w = parseFloat(jQ('#w').val());
@@ -57,13 +62,13 @@ function slider_to_input(which) {
     jQ('#i_h').text(h);
     jQ('#i_w').text(w);
 
+    jQ("#a").on("change", function(){slider_to_input('a')});
+    jQ("#h").on("change", function(){slider_to_input('h')});
+    jQ("#w").on("change", function(){slider_to_input('w')});
+
 }
 
 jQ(function(){
-
-jQ("#a").on("slidestop", function(){slider_to_input('a')});
-jQ("#h").on("slidestop", function(){slider_to_input('h')});
-jQ("#w").on("slidestop", function(){slider_to_input('w')});
 
 slider_to_input('w');
 
