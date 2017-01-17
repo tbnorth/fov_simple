@@ -11,6 +11,7 @@
  href="https://code.jquery.com/ui/1.12.1/themes/black-tie/jquery-ui.css"/>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="jquery.ui.touch-punch.min.js"></script>
 </head>
 <body>
 
@@ -81,6 +82,10 @@ jQ('#w').slider({
     step: 5,
     slide: function(){slider_to_input('w');},
 });
+
+jQ('#a .ui-slider-handle').draggable();
+jQ('#h .ui-slider-handle').draggable();
+jQ('#w .ui-slider-handle').draggable();
 
 slider_to_input('w');
 
