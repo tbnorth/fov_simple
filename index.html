@@ -8,19 +8,18 @@
   a:hover { border-bottom: dotted blue 1px; }
 </style>
 <link rel="stylesheet"
- href="https://code.jquery.com/ui/1.12.1/themes/black-tie/jquery-ui.css"/>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<script src="jquery.ui.touch-punch.min.js"></script>
+ href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </head>
 <body>
 
-<h2>Angle (degrees) <span id='i_a'/></h2>
-<div id="a"></div>
-<h2>Height (cm) <span id='i_h'/></h2>
-<div id="h"></div>
-<h2>Width (cm) <span id='i_w'/></h2>
-<div id="w"></div>
+<h2>Angle (degrees)</h2>
+<div><input type="range" id="a" value="75" min="5" max="175" data-highlight="true" step=5></div>
+<h2>Height (cm)</h2>
+<div><input type="range" id="h" value="500" min="5" max="1750" data-highlight="true" step=5></div>
+<h2>Width (cm)</h2>
+<div><input type="range" id="w" value="500" min="5" max="1750" data-highlight="true" step=5></div>
 
 <p>
 <a href='fov_simp.html' download='fov_simp.html'>Download this page
@@ -33,9 +32,9 @@ for offline use.</a></p>
 jQ = jQuery;
 
 function slider_to_input(which) {
-    var a = parseFloat(jQ('#a').slider('value'));
-    var h = parseFloat(jQ('#h').slider('value'));
-    var w = parseFloat(jQ('#w').slider('value'));
+    var a = parseFloat(jQ('#a').val());
+    var h = parseFloat(jQ('#h').val());
+    var w = parseFloat(jQ('#w').val());
     var a_rad = (a / 2.0) / 180.0 * Math.PI;
 
     switch (which) {
@@ -50,38 +49,17 @@ function slider_to_input(which) {
         break;
     }
 
-    jQ('#a').slider('value', a);
-    jQ('#h').slider('value', h);
-    jQ('#w').slider('value', w);
+    jQ('#a').val(a); jQ('#a').slider('refresh');
+    jQ('#h').val(h); jQ('#h').slider('refresh');
+    jQ('#w').val(w); jQ('#w').slider('refresh');
 
-    jQ('#i_a').text(a);
-    jQ('#i_h').text(h);
-    jQ('#i_w').text(w);
 }
 
 jQ(function(){
 
-jQ('#a').slider({
-    min: 5,
-    max: 175,
-    value: 75,
-    step: 5,
-    slide: function(){slider_to_input('a');},
-});
-jQ('#h').slider({
-    min: 5,
-    max: 1750,
-    value: 500,
-    step: 5,
-    slide: function(){slider_to_input('h');},
-});
-jQ('#w').slider({
-    min: 5,
-    max: 1750,
-    value: 500,
-    step: 5,
-    slide: function(){slider_to_input('w');},
-});
+jQ("#a").on("slidestop", function(){slider_to_input('a')});
+jQ("#h").on("slidestop", function(){slider_to_input('h')});
+jQ("#w").on("slidestop", function(){slider_to_input('w')});
 
 slider_to_input('w');
 
