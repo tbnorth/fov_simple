@@ -20,7 +20,7 @@ from_to_in = [
     ("""<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>""",
      "https://code.jquery.com/ui/1.12.1/jquery-ui.min.js", "<script>%s</script>"),
     ("""<p>
-<a href='fov_simple.html' download='fov_simple.html'>Download this page
+<a href='fov_simp.html' download='fov_simp.html'>Download this page
 for offline use.</a></p>""", "", "%s"),
 ]
 
