@@ -1,0 +1,91 @@
+<html>
+<head>
+<title>Simple FOV calculator</title>
+<style>
+  * { font-family: sans-serif; }
+  input { font-size: 120%; }
+  a { text-decoration: none; }
+  a:hover { border-bottom: dotted blue 1px; }
+</style>
+<link rel="stylesheet"
+ href="https://code.jquery.com/ui/1.12.1/themes/black-tie/jquery-ui.css"/>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+</head>
+<body>
+
+<h2>Angle (degrees) <span id='i_a'/></h2>
+<div id="a"></div>
+<h2>Height (cm) <span id='i_h'/></h2>
+<div id="h"></div>
+<h2>Width (cm) <span id='i_w'/></h2>
+<div id="w"></div>
+
+<p>
+<a href='.' download='fov_simple.html'>Download this page
+for offline use.</a></p>
+
+</body>
+<script>
+jQ = jQuery;
+
+// Hmm, using h = w / ( 2 * tan(a / 2) ) with a=75 and w=0.5 I get h=0.3258, and that seemed to be supported by drawing it.
+
+function slider_to_input(which) {
+    var a = parseFloat(jQ('#a').slider('value'));
+    var h = parseFloat(jQ('#h').slider('value'));
+    var w = parseFloat(jQ('#w').slider('value'));
+    var a_rad = (a / 2.0) / 180.0 * Math.PI;
+
+    switch (which) {
+    case 'a':
+        w = Math.round(2.0 * h * Math.tan(a_rad));
+        break;
+    case 'h':
+        w = Math.round(2.0 * h * Math.tan(a_rad));
+        break;
+    case 'w':
+        h = Math.round(w / (2.0 * Math.tan(a_rad)));
+        break;
+    }
+
+    jQ('#a').slider('value', a);
+    jQ('#h').slider('value', h);
+    jQ('#w').slider('value', w);
+
+    jQ('#i_a').text(a);
+    jQ('#i_h').text(h);
+    jQ('#i_w').text(w);
+}
+
+jQ(function(){
+
+jQ('#a').slider({
+    min: 5,
+    max: 175,
+    value: 75,
+    step: 5,
+    slide: function(){slider_to_input('a');},
+});
+jQ('#h').slider({
+    min: 5,
+    max: 1750,
+    value: 500,
+    step: 5,
+    slide: function(){slider_to_input('h');},
+});
+jQ('#w').slider({
+    min: 5,
+    max: 1750,
+    value: 500,
+    step: 5,
+    slide: function(){slider_to_input('w');},
+});
+
+slider_to_input('w');
+
+});
+</script>
+
+</html>
+
